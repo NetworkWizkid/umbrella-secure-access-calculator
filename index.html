@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cisco Umbrella Seat Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cisco Umbrella Seat Calculator</h1>
+
+        <div class="notes">
+            <p>
+                To understand how Cisco Umbrella licensing works and how to make the most of this tool,
+                <a href="https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/" target="_blank">click here</a>.
+            </p>
+        </div>
+
+        <label>Subscription Tier:</label>
+        <select id="subscription" onchange="updateSubscription()">
+            <option value="select">Select a Subscription Tier</option>
+            <option value="dns_essentials">DNS Essentials</option>
+            <option value="dns_advantage">DNS Advantage</option>
+            <option value="sig_essentials">SIG Essentials</option>
+            <option value="sig_advantage">SIG Advantage</option>
+            <option value="dns_edu">DNS for EDU</option>
+            <option value="sig_edu">SIG for EDU</option>
+        </select>
+
+        <label>Full-time Employees:</label>
+        <input type="number" id="employees" placeholder="Enter number">
+
+        <label>K-12 Students:</label>
+        <input type="number" id="k12_students" placeholder="Enter number">
+
+        <label>Higher Education Students:</label>
+        <input type="number" id="higher_ed_students" placeholder="Enter number">
+
+        <label>Average DNS Queries Per Day, Per User:</label>
+        <input type="number" id="dns_queries" placeholder="Default: 5000">
+
+        <label>EA Subscription:</label>
+        <select id="ea">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
+
+        <label>SIG Peak Bandwidth Per User, Per Month (in kbps):</label>
+        <input type="number" id="sig_peak_bandwidth" placeholder="Default: 1500">
+
+        <button onclick="calculateSeats()">Calculate</button>
+
+        <div class="output">
+            <h2>Results</h2>
+            <p id="output"></p>
+        </div>
+    </div>
+
+
+    <script src="ucjs.js"></script>
+</body>
+</html>
