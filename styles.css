@@ -19,8 +19,7 @@
 h1 {
     font-size: 28px;
     color: #1a4971;
-    margin-bottom: 20px;
-    text-align: center;
+    margin-bottom: 5px;
     font-weight: 600;
 }
 
@@ -167,14 +166,31 @@ button {
     margin-left: 8px;
 }
 
-/* Header controls for aligning title and guide button */
+/* Header controls for aligning title, byline, and guide button */
 .header-controls {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
+    align-items: flex-start;
+    margin-bottom: 20px;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
+}
+
+/* Title section for grouping h1 and byline */
+.title-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+/* Byline styling */
+.byline {
+    font-size: 18px;
+    color: #1a4971;
+    font-weight: 600;
+    margin: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* Guide button styling */
@@ -381,7 +397,7 @@ button {
             margin-left: 8px;
         }
 
-    .no-print, .button-group, .header-controls .guide-button, .modal {
+    .no-print, .button-group, .header-controls .guide-button, .modal, .byline {
         display: none !important;
     }
 }
@@ -397,8 +413,16 @@ button {
 
     .header-controls {
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .title-section {
+        align-items: flex-start;
+    }
+
+    .byline {
+        font-size: 16px;
     }
 
     .guide-button {
