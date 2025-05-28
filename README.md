@@ -1,113 +1,135 @@
 ﻿# Cisco Umbrella & Secure Access Seat Calculator
 
 ## 📌 Overview
-The **Cisco Umbrella & Secure Access Seat Calculator** helps organizations accurately determine the number of seats required for Cisco Umbrella and Secure Access deployments. It accounts for **subscription tiers**, **DNS queries**, **Enterprise Agreements (EA)**, and **Secure Internet Gateway (SIG) usage** as well as **Secure Access Subscriptions**.
+The **Cisco Umbrella & Secure Access Seat Calculator** is a powerful tool designed to help organizations determine the number of seats required for **Cisco Umbrella** and **Cisco Secure Access** deployments. It accounts for:
+
+- **Subscription tiers**
+- **DNS queries**
+- **Enterprise Agreements (EA)**
+- **Secure Internet Gateway (SIG) usage**
+- **Secure Access subscriptions**
+
+---
 
 ## 🚀 Features
-✔ Calculate **Total Seats Required** for Cisco Umbrella and Cisco Secure Access  
-✔ Adjust **seats required based on existing DNS queries per user**  
-✔ **SIG Usage Calculation** based on **Peak Bandwidth** requirements
-✔ Identify **under or over-utilization**  
-✔ Works with **K-12 and Higher Education licensing models**
-✔ Calculate **Secure Access Seats Required**
-✔ Compare **Umbrella SIG Utilization vs. Secure Access Utilization**
-✔ Save and download results as a **PDF file**
+- ✅ Calculate **total seats required** for Cisco Umbrella and Cisco Secure Access
+- ✅ Adjust seats based on **average DNS queries per user**
+- ✅ Compute **SIG usage** using **peak bandwidth** requirements
+- ✅ Identify **under- or over-utilization** of resources
+- ✅ Support **K-12 and Higher Education** licensing models
+- ✅ Calculate **Secure Access seats** for DNS Defense, SIA, and SPA
+- ✅ Compare **Umbrella SIG utilization** vs. **Secure Access utilization**
+- ✅ Export results as a **PDF file** for easy sharing
 
 ---
 
 ## 🛠 Usage Instructions
 
-### **New Deployment Calculation**
-1️⃣ Set **'Average DNS Queries Per Day, Per User'** to **5,000**  
-2️⃣ Enter the **number of users** in the respective fields  
-3️⃣ Specify if the subscription is part of an **Enterprise Agreement (EA)**  
+### New Deployment Calculation
+1. Set **Average DNS Queries Per Day, Per User** to `5,000`.
+2. Enter the **number of users** in the relevant fields.
+3. Specify if the subscription is part of an **Enterprise Agreement (EA)**.
 
-### **Existing Deployment Analysis**
-1️⃣ Enter the **number of existing users**  
-2️⃣ Enter the **current DNS Queries Per Day, Per User**  
-3️⃣ Select **EA status (Yes/No)**  
-4️⃣ The **Utilization field** will indicate **over or underuse** based on a **5,000 DNS query allowance per user**  
+### Existing Deployment Analysis
+1. Enter the **number of existing users**.
+2. Input the **current DNS Queries Per Day, Per User**.
+3. Select **EA status** (`Yes` or `No`).
+4. Check the **Utilization field** to identify **over- or underuse** based on a `5,000 DNS query allowance per user`.
 
-### **SIG Usage Calculation**
-1️⃣ Enter the **required number of seats**  
-2️⃣ Enter the **estimated Peak Bandwidth Per Month, Per User**  
-3️⃣ The **SIG Average Bandwidth per user** (kbps/day) will be displayed  
-4️⃣ **SIG Utilization** is calculated automatically  
-5️⃣ If **SIG usage exceeds 100%**, the **Additional SIG Users Required** field will populate  
+### SIG Usage Calculation
+1. Enter the **required number of seats**.
+2. Input the **estimated Peak Bandwidth Per Month, Per User**.
+3. View the **SIG Average Bandwidth per user** (kbps/day).
+4. Review the automatically calculated **SIG Utilization**.
+5. If **SIG usage exceeds 100%**, the **Additional SIG Users Required** field will populate.
 
-### **Compare Secure Access against Umbrella**
-1️⃣ Enter the relevant Umbrella SIG information including the number of existing seats or seats required
-2️⃣ Select **Yes** for **Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?**
-3️⃣ Select a **single** DNS subscription or a **maximum** of one SIA and one SPA subscription
-4️⃣ If SIA or SPA is selected, enter the **number of users** for each subscription  
-5️⃣ Leave Secure Access Peak Bandwidth Per Month, Per User at a default of **20GB** unless users are expected to exceed this amount monthly
-6️⃣ The **Secure Access Utilization** will be calculated based on the inputs provided
+### Compare Secure Access Against Umbrella
+1. Enter **Umbrella SIG information**, including existing or required seats.
+2. Select `Yes` for **"Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?"**.
+3. Choose a **single DNS subscription** or up to **one SIA and one SPA subscription**.
+4. For SIA or SPA, enter the **number of users** for each subscription.
+5. Keep **Secure Access Peak Bandwidth Per Month, Per User** at `20GB` unless users exceed this monthly.
+6. Review the calculated **Secure Access Utilization**.
 
-## **Calculate Secure Access DNS Defense Seats**
-1️⃣ Enter the **number of users** for Secure Access DNS Defense in the Number of Employees field and optional K-12 or Higher Education fields
-2️⃣ Enter the **Average DNS Queries Per Day, Per User** (default is **5000 DNS Queries Per Day, Per User**)
-3️⃣ Select the option **Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?** and select **Yes**
-4️⃣ Select the **DNS Defense Essentials** or **DNS Defense Advantage** subscription tier
-5️⃣ The **Total Seats Required** will be calculated based on the inputs provided
+### Calculate Secure Access DNS Defense Seats
+1. Enter the **number of users** in the **Number of Employees** field and, optionally, **K-12** or **Higher Education** fields.
+2. Set **Average DNS Queries Per Day, Per User** (default: `5,000`).
+3. Select `Yes` for **"Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?"**.
+4. Choose **DNS Defense Essentials** or **DNS Defense Advantage**.
+5. View the calculated **Total Seats Required**.
 
-## **Calculate Secure Access Private Access or Secure Internet Access Seats**
-1️⃣ Select the option **Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?** and select **Yes**
-2️⃣ Select the **Secure Access Subscription Tier** (either **Secure Internet Access Essentials or Advantage** or **Secure Private Access Essentials or Advantage**). If you want to calculate both SIA and SPA, select one of each.
-3️⃣ Enter the **number of users** for each subscription tier
-4️⃣ Enter the **Secure Access Peak Bandwidth Per Month, Per User** (default is **20GB**)
-5️⃣ The **Total Seats Required** will be calculated based on the inputs provided
+### Calculate Secure Access Private Access or Secure Internet Access Seats
+1. Select `Yes` for **"Would you like to compare Secure Access with Umbrella or calculate Secure Access seats?"**.
+2. Choose a **Secure Access Subscription Tier** (`Secure Internet Access Essentials/Advantage` or `Secure Private Access Essentials/Advantage`). For both SIA and SPA, select one of each.
+3. Enter the **number of users** for each subscription tier.
+4. Set **Secure Access Peak Bandwidth Per Month, Per User** (default: `20GB`).
+5. View the calculated **Total Seats Required**.
 
 ---
 
-## ℹ️ Notes
-⚠️ **You cannot populate both** the K-12 and Higher Education fields — choose only one!
-⚠️ **As per Cisco's Umbrella DNS MSLA, each user is allowed** **5000 DNS Request Per Day**, totaling **150,000 queries per user, per month**   
-⚠️ **As per Cisco's Umbrella SIG MSLA, each user is allowed** **50 kbps**, totaling **1,500 kbps per month**   
-⚠️ **DNS Essentials and Advantage subscriptions count students differently:**
-   - **K-12 students:** 1 user license **per 10 students**
-   - **Higher Education students:** 1 user license **per 5 students**  
+## ℹ️ Important Notes
+- ⚠️ **K-12 and Higher Education fields** cannot both be populated—choose one!
+- ⚠️ Per Cisco's Umbrella DNS MSLA, each user is allowed **5,000 DNS requests per day** (150,000 per month).
+- ⚠️ Per Cisco's Umbrella SIG MSLA, each user is allowed **50 kbps** (1,500 kbps per month).
+- ⚠️ **DNS Essentials and Advantage** subscriptions count students differently:
+  - **K-12 students**: 1 user license per **10 students**
+  - **Higher Education students**: 1 user license per **5 students**
 
-🔗 **Learn more about Cisco Umbrella licensing:**  
+🔗 **Learn more about Cisco Umbrella licensing**:  
 [How to Determine the Number of Cisco Umbrella Seats Required](https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/)
 
 ---
 
 ## 💡 Example Scenarios
 
-### **Scenario 1: Enterprise with 3,000 Employees**
-- **Subscription Tier:** `DNS Essentials`
-- **Employees:** `3,000`
-- **EA Subscription:** `No`
-- **Anticipated DNS Queries Per User:** `3,400`
-✅ **Total Seats Required:** `3,000`
+### Scenario 1: Enterprise with 3,000 Employees
+- **Subscription Tier**: `DNS Essentials`
+- **Employees**: `3,000`
+- **EA Subscription**: `No`
+- **Anticipated DNS Queries Per User**: `3,400`
+- ✅ **Total Seats Required**: `3,000`
 
-### **Scenario 2: K-12 School with 150 Employees & 1,000 Students**
-- **Subscription Tier:** `DNS Advantage`
-- **Employees:** `150`
-- **K-12 Students:** `1,000`
-✅ **Total Seats Required:** `250 user licenses`  
-✔ `(150 Employees + (1000 Students / 10)) = 250`
+### Scenario 2: K-12 School with 150 Employees & 1,000 Students
+- **Subscription Tier**: `DNS Advantage`
+- **Employees**: `150`
+- **K-12 Students**: `1,000`
+- ✅ **Total Seats Required**: `250 user licenses`  
+  - Calculation: `(150 Employees + (1,000 Students / 10)) = 250`
 
-### **Scenario 3: Higher Education Facility with 565 Employees & 5,400 Students**
-- **Subscription Tier:** `DNS Advantage`
-- **Employees:** `565`
-- **Higher Education Students:** `5,400`
-✅ **Total Seats Required:** `1,645 user licenses`  
-✔ `(565 Employees + (5400 Students / 5)) = 1,645`
+### Scenario 3: Higher Education Facility with 565 Employees & 5,400 Students
+- **Subscription Tier**: `DNS Advantage`
+- **Employees**: `565`
+- **Higher Education Students**: `5,400`
+- ✅ **Total Seats Required**: `1,645 user licenses`  
+  - Calculation: `(565 Employees + (5,400 Students / 5)) = 1,645`
 
-## **Scenario 4: Secure Access Deployment with 6758 Users moving from an over utilized Umbrella Deployment**
-- **Existing Umbrella Subscription Tier:** `SIG Essentials`
-- **Existing Umbrella Seats:** `6758`
-- **SIG Peak Bandwidth Per Month, Per User:** `2636.40kbps`
-- **Secure Access Subscription Tier:** `Secure Internet Access Essentials` and `Secure Private Access Essentials`
-✅ **SPA Users:** '3000'
-✅ **SIA Users:** '3758'
-- **Secure Access Peak Bandwidth Per Month, Per User:** `20GB`
-✔ 'Rather than sticking with Umbrella where the SIG Utilization is 175.73% which would require an additional 5118 seats, the Secure Access Utilization is only 0.01% with the same amount of traffic and therefore, Secure Access is the better option.'
+### Scenario 4: Secure Access Deployment with 6,758 Users (Over-Utilized Umbrella)
+- **Existing Umbrella Subscription Tier**: `SIG Essentials`
+- **Existing Umbrella Seats**: `6,758`
+- **SIG Peak Bandwidth Per Month, Per User**: `2,636.40 kbps`
+- **Secure Access Subscription Tier**: `Secure Internet Access Essentials` and `Secure Private Access Essentials`
+- **SPA Users**: `3,000`
+- **SIA Users**: `3,758`
+- **Secure Access Peak Bandwidth Per Month, Per User**: `20GB`
+- ✅ **Result**: Umbrella SIG Utilization is `175.73%`, requiring an additional `5,118 seats`. Secure Access Utilization is `0.01%` with the same traffic, making it the better option.
 
-## **Scenario 5: Secure Access Deployment with 6758 Users where bandwidth exceeds 20GB per user, per month**
-- Existing Secure Access Subscription Tier: `Secure Internet Access Essentials` and `Secure Private Access Essentials`
-- Existing Secure Access Seats: `6758`
-- Secure Access Peak Bandwidth Per Month, Per User: `30GB`
-✔ Because the Secure Access Peak Bandwidth Per Month, Per User exceeds 20GB, the Secure Access Utilization will be calculated based on the inputs provided and the results will indicate if additional seats are required. In this example, an additional seat count of 3379 is required, taking the total Secure Access seats required to 10137.
+### Scenario 5: Secure Access Deployment with 6,758 Users Exceeding 20GB Bandwidth
+- **Existing Secure Access Subscription Tier**: `Secure Internet Access Essentials` and `Secure Private Access Essentials`
+- **Existing Secure Access Seats**: `6,758`
+- **Secure Access Peak Bandwidth Per Month, Per User**: `30GB`
+- ✅ **Result**: Secure Access Utilization exceeds `20GB`, requiring an additional `3,379 seats`, totaling `10,137 seats`.
+
+---
+
+## 🖥️ Technical Details
+- **Frontend**: HTML, CSS (`styles.css`), JavaScript (`ucjs.js`)
+- **Libraries**: `jsPDF` and `html2canvas` for PDF generation
+- **Styling**: Clean, modern design with print-friendly styles for PDF export (see `styles.css`)
+- **Compatibility**: Works in modern browsers (e.g., Chrome, Edge, Firefox)
+
+---
+
+## 📄 License
+This project is provided for educational and professional use. Refer to Cisco's official licensing documentation for compliance.
+
 ---
