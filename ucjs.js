@@ -13,6 +13,10 @@ function updateSubscription() {
         return;
     }
 
+    // Reset all input values when Subscription Tier changes
+    document.querySelectorAll("input").forEach(el => el.value = "");
+    document.getElementById("dns_queries").value = "5000"; // Default DNS Queries Per User
+
     // If DNS for EDU is selected, disable K-12 & Higher Ed input fields
     if (subscription === "dns_edu") {
         k12Field.value = "";
@@ -26,6 +30,14 @@ function updateSubscription() {
 
     // Enable SIG Peak Bandwidth input only if the subscription tier contains "sig" anywhere in its name
     sigPeakField.disabled = !subscription.includes("sig");
+
+    // Disable "Average DNS Queries Per Day, Per User" for SIG subscription tiers
+    document.getElementById("dns_queries").disabled = subscription.includes("sig");
+
+    // Reset EA Subscription field to default state
+
+    document.getElementById("output").innerHTML = "";
+    document.getElementById("output").style.display = "none"; // Hide output until a valid tier is chosen
 }
 
 function calculateSeats() {
@@ -33,7 +45,7 @@ function calculateSeats() {
 
     // Prevent calculation if no valid tier is selected
     if (subscription === "select") {
-        alert("Please select a valid subscription tier before calculating.");
+        alert("Please select a valid subscription tier and enter the relevant values before calculating.");
         return;
     }
 
@@ -58,10 +70,17 @@ function updateSeats() {
     let sigPeakBandwidth = Number(document.getElementById("sig_peak_bandwidth").value) || 1500;
     let ea = document.getElementById("ea").value;
 
-    // Prevent both student categories from being populated
-    if (k12 > 0 && higherEd > 0) {
-        alert("Only one student category should be populated.");
-        return;
+    // Automatically disable the other student category field when one is populated
+    if (k12 > 0) {
+        document.getElementById("higher_ed_students").disabled = true;
+    } else {
+        document.getElementById("higher_ed_students").disabled = false;
+    }
+
+    if (higherEd > 0) {
+        document.getElementById("k12_students").disabled = true;
+    } else {
+        document.getElementById("k12_students").disabled = false;
     }
 
     // Calculate total seats required
@@ -79,6 +98,9 @@ function updateSeats() {
         ? Math.ceil((parseFloat(sigUtilization) - 100) * totalSeats / 100)
         : "";
 
+    // Calculate Number of Existing Seats (Users can input any combination of Employees, K-12, or Higher Ed)
+    let existingSeats = employees + k12 + higherEd;
+
     // Calculate Total Seats Required Based on Low Utilization (Only if subscription starts with "dns" and queries < 5000)
     let lowUtilizationSeats = "";
     if (subscription.startsWith("dns") && dnsQueries < 5000) {
@@ -86,16 +108,26 @@ function updateSeats() {
         lowUtilizationSeats = actualSeatsRequired;
     }
 
+    // Calculate Total SIG Seats Required Based on Low Utilization (Only if subscription includes "sig" and utilization < 1500)
+    let sigLowUtilizationSeats = "";
+    if (subscription.includes("sig") && sigPeakBandwidth < 1500) {
+        let actualSigSeatsRequired = Math.ceil(baseUsers * (sigPeakBandwidth / 1500)); // Adjusted seat count based on lower SIG utilization
+        sigLowUtilizationSeats = actualSigSeatsRequired;
+    }
+
     // Display results
     document.getElementById("output").innerHTML = `
     <b>Subscription Tier:</b> ${subscription.replace("_", " ").toUpperCase()}<br>
-    <b>Total Seats Required:</b> ${totalSeats}<br>
-    <b>EA Allowed Seats:</b> ${allowedSeats}<br>
-    <b>Utilization:</b> ${utilization.toFixed(2)}%<br>
+    <b>Number of Existing Seats:</b> ${existingSeats}<br>
+    ${!subscription.includes("sig") ? `<b>Total DNS Seats Required:</b> ${totalSeats}<br>` : ""}
+    ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${allowedSeats}<br>` : ""}
+    ${!subscription.includes("sig") ? `<b>DNS Utilization:</b> ${utilization.toFixed(2)}%<br>` : ""}
     ${subscription.includes("sig") ? `<b>SIG Average Bandwidth Per User:</b> ${sigAverageBandwidth} kbps/day<br>` : ""}
     ${subscription.includes("sig") ? `<b>SIG Utilization:</b> ${sigUtilization}%<br>` : ""}
-    ${subscription.includes("sig") ? `<b>Additional SIG Users Required:</b> ${additionalSigUsers}<br>` : ""}
-    ${lowUtilizationSeats ? `<b>Total Seats Required Based on Low Utilization:</b> ${lowUtilizationSeats}<br>` : ""}
-`;
-
+    ${subscription.includes("sig") && additionalSigUsers ? `<b>Additional SIG Users Required:</b> ${additionalSigUsers}<br>` : ""}
+    ${subscription.includes("sig") && !sigLowUtilizationSeats ? `<b>Total SIG Seat Count Required:</b> ${existingSeats + (additionalSigUsers || 0)}<br>` : ""}
+    ${lowUtilizationSeats ? `<b>Total DNS Seats Required Based on Low Utilization:</b> ${lowUtilizationSeats}<br>` : ""}
+    ${sigLowUtilizationSeats ? `<b>Total SIG Seats Required Based on Low Utilization:</b> ${sigLowUtilizationSeats}<br>` : ""}
+    `;
 }
+
