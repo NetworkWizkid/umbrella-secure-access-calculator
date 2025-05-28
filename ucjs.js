@@ -20,13 +20,14 @@ function toggleStudentFields() {
 }
 
 function toggleSecureAccessFields() {
-    let compareSecureAccess = document.getElementById("compare_secure_access").value;
-    let secureAccessFields = document.getElementById("secure_access_fields");
-    let secureAccessSub1 = document.getElementById("secure_access_subscription_1");
-    let secureAccessSub2 = document.getElementById("secure_access_subscription_2");
-    let spaSeatCount = document.getElementById("spa_seat_count");
-    let siaSeatCount = document.getElementById("sia_user_seat_count");
-    let secureAccessPeakBandwidth = document.getElementById("secure_access_peak_bandwidth");
+    const compareSecureAccess = document.getElementById("compare_secure_access").value;
+    const secureAccessFields = document.getElementById("secure_access_fields");
+    const secureAccessSub1 = document.getElementById("secure_access_subscription_1");
+    const secureAccessSub2 = document.getElementById("secure_access_subscription_2");
+    const spaSeatCount = document.getElementById("spa_seat_count");
+    const siaSeatCount = document.getElementById("sia_user_seat_count");
+    const secureAccessPeakBandwidth = document.getElementById("secure_access_peak_bandwidth");
+    const secureAccessNote = secureAccessFields.querySelector(".secure-access-note");
 
     if (compareSecureAccess === "no") {
         secureAccessFields.style.display = "none";
@@ -41,6 +42,10 @@ function toggleSecureAccessFields() {
         document.getElementById("secure_access_output").style.display = "none";
     } else {
         secureAccessFields.style.display = "block";
+        // Ensure note is visible
+        if (secureAccessNote) {
+            secureAccessNote.style.display = "block";
+        }
         secureAccessPeakBandwidth.value = secureAccessPeakBandwidth.value || "20"; // Set default
         updateSecureAccessSubscriptions();
     }
@@ -263,7 +268,7 @@ function updateSeats() {
 
     // Umbrella output
     document.getElementById("umbrella_output").innerHTML = `
-    <b>Subscription Tier:</b> ${subscription.replace("_", " ").toUpperCase()}<br>
+    <b>Subscription Tier:</b> ${subscription.replace(/_/g, " ").toUpperCase()}<br>
     <b>Number of Existing Seats:</b> ${existingSeats}<br>
     ${!subscription.includes("sig") ? `<b>Total DNS Seats Required:</b> ${totalSeats}<br>` : ""}
     ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${allowedSeats}<br>` : ""}
@@ -310,14 +315,15 @@ function updateSeats() {
         // DNS-based Secure Access results
         if (dnsSubscriptions.length > 0) {
             secureAccessOutput += dnsSubscriptions.map(sub => `
-        <b>Secure Access Subscription Tier:</b> ${sub.replace(/_/g, " ").toUpperCase()}<br>
-        <b>Number of Existing Umbrella Seats:</b> ${existingSeats}<br>
-        <b>Total DNS Seats Required:</b> ${secureAccessTotalSeats}<br>
-        ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${secureAccessAllowedSeats}<br>` : ""}
-        <b>DNS Utilization:</b> ${secureAccessUtilization}%<br>
-        ${secureAccessLowUtilizationSeats ? `<b>Total DNS Seats Required Based on Low Utilization:</b> ${secureAccessLowUtilizationSeats}<br>` : ""}
-    `).join("<br>");
+                <b>Secure Access Subscription Tier:</b> ${sub.replace(/_/g, " ").toUpperCase()}<br>
+                <b>Number of Existing Umbrella Seats:</b> ${existingSeats}<br>
+                <b>Total DNS Seats Required:</b> ${secureAccessTotalSeats}<br>
+                ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${secureAccessAllowedSeats}<br>` : ""}
+                <b>DNS Utilization:</b> ${secureAccessUtilization}%<br>
+                ${secureAccessLowUtilizationSeats ? `<b>Total DNS Seats Required Based on Low Utilization:</b> ${secureAccessLowUtilizationSeats}<br>` : ""}
+            `).join("<br>");
         }
+
         // SIA/SPA calculations (20GB per user per month = 0.6667GB/day)
         if (siaSubscriptions.length > 0 || spaSubscriptions.length > 0) {
             // Use provided seat counts for SIA/SPA
@@ -336,7 +342,7 @@ function updateSeats() {
 
             // Secure Access vs. SIG Utilization (Percentage of Secure Access 20GB/month used by SIG bandwidth)
             let sigMonthlyBandwidthGB = sigAverageBandwidth ? (sigAverageBandwidth * 30 / 1000000) : 0; // kbps/day to GB/month (1GB = 1,000,000 kbps)
-            let secureAccessVsSigUtilization = (sigMonthlyBandwidthGB / 20 * 100).toFixed(2); // % of 20GB/month
+            secureAccessVsSigUtilization = (sigMonthlyBandwidthGB / 20 * 100).toFixed(2); // % of 20GB/month
 
             // Combine SIA and SPA subscription tiers
             let combinedTiers = [...siaSubscriptions, ...spaSubscriptions]
@@ -344,17 +350,17 @@ function updateSeats() {
                 .join(", ");
 
             secureAccessOutput += `
-        <b>Secure Access Subscription Tier:</b> ${combinedTiers}<br>
-        <b>Number of Existing Umbrella Seats:</b> ${existingSeats}<br>
-        ${spaSubscriptions.length > 0 ? `<b>SPA User Seat Count:</b> ${spaSeatCount}<br>` : ""}
-        ${siaSubscriptions.length > 0 ? `<b>SIA User Seat Count:</b> ${siaSeatCount}<br>` : ""}
-        <b>Secure Access Average Bandwidth Per User:</b> ${secureAccessSigAverageBandwidth} GB/day<br>
-        <b>Secure Access Utilization:</b> ${secureAccessSigUtilization}%<br>
-        ${secureAccessAdditionalSigUsers ? `<b>Additional Secure Access Users Required:</b> ${secureAccessAdditionalSigUsers}<br>` : ""}
-        ${secureAccessSigLowUtilizationSeats ? `<b>Total Secure Access Seat Count Required Based on Low Utilization:</b> ${secureAccessSigLowUtilizationSeats}<br>` : `<b>Total Secure Access Seat Count Required:</b> ${totalSecureAccessUsers + Number(secureAccessAdditionalSigUsers)}<br>`}
-        <b>Total Secure Access Data Limit:</b> ${secureAccessTotalDataLimit} GB/month<br>
-        <b>Secure Access vs. SIG Utilization (Monthly):</b> ${secureAccessVsSigUtilization}%<br>
-    `;
+                <b>Secure Access Subscription Tier:</b> ${combinedTiers}<br>
+                <b>Number of Existing Umbrella Seats:</b> ${existingSeats}<br>
+                ${spaSubscriptions.length > 0 ? `<b>SPA User Seat Count:</b> ${spaSeatCount}<br>` : ""}
+                ${siaSubscriptions.length > 0 ? `<b>SIA User Seat Count:</b> ${siaSeatCount}<br>` : ""}
+                <b>Secure Access Average Bandwidth Per User:</b> ${secureAccessSigAverageBandwidth} GB/day<br>
+                <b>Secure Access Utilization:</b> ${secureAccessSigUtilization}%<br>
+                ${secureAccessAdditionalSigUsers ? `<b>Additional Secure Access Users Required:</b> ${secureAccessAdditionalSigUsers}<br>` : ""}
+                ${secureAccessSigLowUtilizationSeats ? `<b>Total Secure Access Seat Count Required Based on Low Utilization:</b> ${secureAccessSigLowUtilizationSeats}<br>` : `<b>Total Secure Access Seat Count Required:</b> ${totalSecureAccessUsers + Number(secureAccessAdditionalSigUsers)}<br>`}
+                <b>Total Secure Access Data Limit:</b> ${secureAccessTotalDataLimit} GB/month<br>
+                <b>Secure Access vs. SIG Utilization (Monthly):</b> ${secureAccessVsSigUtilization}%<br>
+            `;
         }
 
         document.getElementById("secure_access_output").innerHTML = secureAccessOutput;
@@ -362,5 +368,157 @@ function updateSeats() {
     } else {
         document.getElementById("secure_access_output").innerHTML = "";
         document.getElementById("secure_access_output").style.display = "none";
+    }
+}
+
+function exportResultsToPDF() {
+    console.log("Export function triggered for Umbrella Calculator results");
+
+    const umbrellaContainer = document.getElementById("umbrella_output");
+    const secureAccessContainer = document.getElementById("secure_access_output");
+
+    if ((!umbrellaContainer || umbrellaContainer.innerHTML.trim() === "") &&
+        (!secureAccessContainer || secureAccessContainer.innerHTML.trim() === "")) {
+        console.error("Error: No results available in umbrella_output or secure_access_output.");
+        alert("No results available to export!");
+        return;
+    }
+
+    try {
+        // Create print container
+        const printContainer = document.createElement("div");
+        printContainer.className = "print-container";
+        Object.assign(printContainer.style, {
+            fontFamily: "'Helvetica Neue', Arial, sans-serif",
+            fontSize: "12pt",
+            color: "#000",
+            padding: "15mm",
+            background: "#fff",
+            width: "210mm",
+            boxSizing: "border-box"
+        });
+
+        // Clone main container
+        const mainContainer = document.querySelector(".container");
+        const clonedContainer = mainContainer.cloneNode(true);
+
+        // Remove buttons from clone
+        const buttons = clonedContainer.querySelectorAll(".no-print");
+        buttons.forEach(button => button.remove());
+
+        // Map select values to display text
+        const selectDisplayMap = {
+            "ea": {
+                "No": "No",
+                "Yes": "Yes"
+            },
+            "subscription": {
+                "select": "Select Umbrella Tier",
+                "dns_essentials": "DNS Essentials",
+                "dns_advantage": "DNS Advantage",
+                "sig_essentials": "SIG Essentials",
+                "sig_advantage": "SIG Advantage",
+                "dns_edu": "DNS for EDU"
+            },
+            "add_students": {
+                "No": "No",
+                "Yes": "Yes"
+            },
+            "compare_secure_access": {
+                "no": "No",
+                "yes": "Yes"
+            },
+            "secure_access_subscription_1": {
+                "select": "Select Subscription",
+                "dns_defense_essentials": "DNS Defense Essentials",
+                "dns_defense_advantage": "DNS Defense Advantage",
+                "sia_essentials": "Secure Internet Access Essentials",
+                "sia_advantage": "Secure Internet Access Advantage",
+                "spa_essentials": "Secure Private Access Essentials",
+                "spa_advantage": "Secure Private Access Advantage"
+            },
+            "secure_access_subscription_2": {
+                "select": "Select Subscription",
+                "dns_defense_essentials": "DNS Defense Essentials",
+                "dns_defense_advantage": "DNS Defense Advantage",
+                "sia_essentials": "Secure Internet Access Essentials",
+                "sia_advantage": "Secure Internet Access Advantage",
+                "spa_essentials": "Secure Private Access Essentials",
+                "spa_advantage": "Secure Private Access Advantage"
+            }
+        };
+
+        // Update input and select values
+        const inputs = clonedContainer.querySelectorAll("input, select");
+        inputs.forEach(clonedField => {
+            const originalField = document.getElementById(clonedField.id);
+            if (originalField) {
+                if (clonedField.tagName === "SELECT") {
+                    const value = originalField.value;
+                    const displayText = selectDisplayMap[clonedField.id]?.[value] || "";
+                    clonedField.outerHTML = `<span>${displayText}</span>`;
+                } else if (clonedField.tagName === "INPUT") {
+                    clonedField.outerHTML = `<span>${originalField.value || ""}</span>`;
+                }
+            }
+        });
+
+        // Ensure dynamic fields are visible
+        const dynamicFields = clonedContainer.querySelectorAll("[style*='display: none']");
+        dynamicFields.forEach(field => {
+            if (field.id === "student_fields" && document.getElementById("add_students").value === "Yes") {
+                field.style.display = "block";
+            }
+            if (field.id === "secure_access_fields" && document.getElementById("compare_secure_access").value === "yes") {
+                field.style.display = "block";
+                // Ensure note is visible
+                const note = field.querySelector(".secure-access-note");
+                if (note) {
+                    note.style.display = "block";
+                    note.style.margin = "10px 0";
+                }
+                // Ensure h2 is visible
+                const h2 = field.querySelector("h2");
+                if (h2) {
+                    h2.style.display = "block";
+                    h2.style.margin = "20px 0 10px";
+                }
+            }
+            if (field.id === "spa_seat_count" || field.id === "sia_user_seat_count") {
+                const secureAccessSub1 = document.getElementById("secure_access_subscription_1").value;
+                const secureAccessSub2 = document.getElementById("secure_access_subscription_2").value;
+                if ((field.id === "spa_seat_count" && (secureAccessSub1.includes("spa") || secureAccessSub2.includes("spa"))) ||
+                    (field.id === "sia_user_seat_count" && (secureAccessSub1.includes("sia") || secureAccessSub2.includes("sia")))) {
+                    field.style.display = "block";
+                }
+            }
+        });
+
+        // Append cloned content
+        printContainer.appendChild(clonedContainer);
+
+        console.log("Print Container Content:", printContainer.innerHTML);
+
+        // Append to DOM
+        document.body.appendChild(printContainer);
+
+        // Hide all other elements for printing
+        const originalContent = document.querySelectorAll("body > *:not(.print-container)");
+        originalContent.forEach(el => el.style.display = "none");
+
+        // Trigger print
+        window.print();
+
+        // Cleanup
+        originalContent.forEach(el => el.style.display = "");
+        document.body.removeChild(printContainer);
+    } catch (error) {
+        console.error("Unexpected error during export:", error);
+        alert("An unexpected error occurred during export. Please try again.");
+        const originalContent = document.querySelectorAll("body > *:not(.print-container)");
+        originalContent.forEach(el => el.style.display = "");
+        if (document.body.contains(printContainer)) {
+            document.body.removeChild(printContainer);
+        }
     }
 }
