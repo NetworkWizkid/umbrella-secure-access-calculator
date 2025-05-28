@@ -121,6 +121,21 @@ The **Cisco Umbrella & Secure Access Seat Calculator** is a powerful tool design
 
 ---
 
+## 📚 Useful Guides
+Explore these resources for more information on Cisco Umbrella and Secure Access deployments:
+- [Secure Access DNS Query Average](https://docs.sse.cisco.com/sse-dns-guide/docs/monthly-dns-query-average){target="_blank"}: Learn about average DNS query volumes for Secure Access.
+- [Secure Access MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/OfferDescriptions/Cisco-Secure-Access-Product-Description.pdf){target="_blank"}: Master Service Level Agreement for Cisco Secure Access.
+- [Umbrella SIG MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla/sig-essentials.pdf){target="_blank"}: Service Level Agreement for Umbrella SIG Essentials.
+- [Umbrella DNS MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla_direct/dns-security.pdf){target="_blank"}: Service Level Agreement for Umbrella DNS Security.
+- [Network Wizkid](https://www.networkwizkid.com){target="_blank"}: Visit Network Wizkid’s website for more networking and cyber security resources.
+- [Network Wizkid](https://www.youtube.com/@networkwizkid){target="_blank"}: Visit Network Wizkid’s YouTube channel for more networking and cyber security resources.
+- [Cisco SSE Packages](https://www.cisco.com/c/en/us/solutions/collateral/security-service-edge-sse/security-service-edge-sse-package-og.html){target="_blank"}: Overview of Cisco Security Service Edge (SSE) packages.
+- [How to Determine the Number of Seats Required](https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/){target="_blank"}: Guide on calculating Cisco Umbrella seat requirements.
+- [Cisco Secure Access - DNS Defense (Formerly Cisco Umbrella DNS) Data Sheet](https://www.cisco.com/c/en/us/products/collateral/security/secure-access/secure-access-dns-defense-ds.html){target="_blank"}: Cisco Secure Access - DNS Defense (Formerly Cisco Umbrella DNS) Data Sheet.
+- [Cisco Secure Access Data Sheet](https://www.cisco.com/c/en/us/products/collateral/security/secure-access/hybrid-workforce-cloud-agile-security-ds.html){target="_blank"}: Cisco Secure Access Data Sheet.]
+
+---
+
 ## 🖥️ Technical Details
 - **Frontend**: HTML, CSS (`styles.css`), JavaScript (`ucjs.js`)
 - **Libraries**: `jsPDF` and `html2canvas` for PDF generation
