@@ -130,6 +130,6 @@ The **Cisco Umbrella & Secure Access Seat Calculator** is a powerful tool design
 ---
 
 ## 📄 License
-This project is provided for educational and professional use. Refer to Cisco's official licensing documentation for compliance.
+This project is provided for educational and professional use. Contact networkwiizkiid@gmail.com for any inquiries or contributions.
 
 ---
