@@ -123,16 +123,16 @@ The **Cisco Umbrella & Secure Access Seat Calculator** is a powerful tool design
 
 ## 📚 Useful Guides
 Explore these resources for more information on Cisco Umbrella and Secure Access deployments:
-- [Secure Access DNS Query Average](https://docs.sse.cisco.com/sse-dns-guide/docs/monthly-dns-query-average){target="_blank"}: Learn about average DNS query volumes for Secure Access.
-- [Secure Access MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/OfferDescriptions/Cisco-Secure-Access-Product-Description.pdf){target="_blank"}: Master Service Level Agreement for Cisco Secure Access.
-- [Umbrella SIG MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla/sig-essentials.pdf){target="_blank"}: Service Level Agreement for Umbrella SIG Essentials.
-- [Umbrella DNS MSLA](https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla_direct/dns-security.pdf){target="_blank"}: Service Level Agreement for Umbrella DNS Security.
-- [Network Wizkid](https://www.networkwizkid.com){target="_blank"}: Visit Network Wizkid’s website for more networking and cyber security resources.
-- [Network Wizkid](https://www.youtube.com/@networkwizkid){target="_blank"}: Visit Network Wizkid’s YouTube channel for more networking and cyber security resources.
-- [Cisco SSE Packages](https://www.cisco.com/c/en/us/solutions/collateral/security-service-edge-sse/security-service-edge-sse-package-og.html){target="_blank"}: Overview of Cisco Security Service Edge (SSE) packages.
-- [How to Determine the Number of Seats Required](https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/){target="_blank"}: Guide on calculating Cisco Umbrella seat requirements.
-- [Cisco Secure Access - DNS Defense (Formerly Cisco Umbrella DNS) Data Sheet](https://www.cisco.com/c/en/us/products/collateral/security/secure-access/secure-access-dns-defense-ds.html){target="_blank"}: Cisco Secure Access - DNS Defense (Formerly Cisco Umbrella DNS) Data Sheet.
-- [Cisco Secure Access Data Sheet](https://www.cisco.com/c/en/us/products/collateral/security/secure-access/hybrid-workforce-cloud-agile-security-ds.html){target="_blank"}: Cisco Secure Access Data Sheet.]
+- <a href="https://docs.sse.cisco.com/sse-dns-guide/docs/monthly-dns-query-average" target="_blank">Secure Access DNS Query Average</a>: Learn about average DNS query volumes for Secure Access.
+- <a href="https://www.cisco.com/c/dam/en_us/about/doing_business/legal/OfferDescriptions/Cisco-Secure-Access-Product-Description.pdf" target="_blank">Secure Access MSLA</a>: Master Service Level Agreement for Cisco Secure Access.
+- <a href="https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla/sig-essentials.pdf" target="_blank">Umbrella SIG MSLA</a>: Service Level Agreement for Umbrella SIG Essentials.
+- <a href="https://www.cisco.com/c/dam/en_us/about/doing_business/legal/msla_direct/dns-security.pdf" target="_blank">Umbrella DNS MSLA</a>: Service Level Agreement for Umbrella DNS Security.
+- <a href="https://www.networkwizkid.com" target="_blank">Network Wizkid</a>: Visit Network Wizkid’s website for more networking and cyber security resources.
+- <a href="https://www.youtube.com/@networkwizkid" target="_blank">Network Wizkid YouTube</a>: Visit Network Wizkid’s YouTube channel for more networking and cyber security resources.
+- <a href="https://www.cisco.com/c/en/us/solutions/collateral/security-service-edge-sse/security-service-edge-sse-package-og.html" target="_blank">Cisco SSE Packages</a>: Overview of Cisco Security Service Edge (SSE) packages.
+- <a href="https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/" target="_blank">How to Determine the Number of Seats Required</a>: Guide on calculating Cisco Umbrella seat requirements.
+- <a href="https://www.cisco.com/c/en/us/products/collateral/security/secure-access/secure-access-dns-defense-ds.html" target="_blank">Cisco Secure Access - DNS Defense Data Sheet</a>: Cisco Secure Access - DNS Defense (Formerly Cisco Umbrella DNS) Data Sheet.
+- <a href="https://www.cisco.com/c/en/us/products/collateral/security/secure-access/hybrid-workforce-cloud-agile-security-ds.html" target="_blank">Cisco Secure Access Data Sheet</a>: Cisco Secure Access Data Sheet.
 
 ---
 
