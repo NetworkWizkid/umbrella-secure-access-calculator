@@ -220,6 +220,14 @@ function updateSeats() {
     let siaSeatCount = document.getElementById("sia_user_seat_count").style.display === "block" ? Number(document.getElementById("sia_user_seat_count_input").value) || 0 : 0;
     let secureAccessPeakBandwidth = Number(document.getElementById("secure_access_peak_bandwidth").value) || 20;
 
+    // Adjust student counts for Umbrella DNS Essentials and Advantage only
+    let umbrellaK12 = k12;
+    let umbrellaHigherEd = higherEd;
+    if ((subscription === "dns_essentials" || subscription === "dns_advantage") && (k12 > 0 || higherEd > 0)) {
+        umbrellaK12 = k12 > 0 ? Math.ceil(k12 / 10) : 0; // 1 license per 10 K-12 students
+        umbrellaHigherEd = higherEd > 0 ? Math.ceil(higherEd / 5) : 0; // 1 license per 5 Higher Ed students
+    }
+
     // Automatically disable/enable student fields based on input values
     const k12Input = document.getElementById("k12_students");
     const higherEdInput = document.getElementById("higher_ed_students");
@@ -238,7 +246,7 @@ function updateSeats() {
     // Umbrella calculations (only if subscription is valid)
     let umbrellaOutput = "";
     if (subscription !== "select") {
-        let baseUsers = employees + k12 + higherEd;
+        let baseUsers = employees + umbrellaK12 + umbrellaHigherEd;
         let additionalSeats = Math.ceil((baseUsers * dnsQueries) / 5000);
         let totalSeats = Math.max(baseUsers, additionalSeats);
         let allowedSeats = ea === "Yes" ? Math.ceil(totalSeats * 1.1) : totalSeats;
@@ -254,7 +262,7 @@ function updateSeats() {
             ? Math.ceil((parseFloat(sigUtilization) - 100) * totalSeats / 100)
             : "";
 
-        let existingSeats = employees + k12 + higherEd;
+        let existingSeats = employees + umbrellaK12 + umbrellaHigherEd;
 
         let lowUtilizationSeats = "";
         if (subscription.startsWith("dns") && dnsQueries < 5000 && dnsQueries > 0) {
@@ -377,17 +385,17 @@ function updateSeats() {
 
             secureAccessOutput += `
                 <b>Secure Access Subscription Tier:</b> ${combinedTiers}<br>
-                <b>Number of Existing Umbrella Seats:</b> ${secureAccessBaseUsers}<br></br>
+                <b>Number of Existing Umbrella Seats:</b> ${secureAccessBaseUsers}<br>
                 ${spaSubscriptions.length > 0 ? `<b>SPA User Seat Count:</b> ${spaSeatCount}<br>` : ""}
                 ${siaSubscriptions.length > 0 ? `<b>SIA User Seat Count:</b> ${siaSeatCount}<br>` : ""}
-                <b>Total Secure Access Seats:</b> ${totalSecureAccessUsers}<br></br>
+                <b>Total Secure Access Seats:</b> ${totalSecureAccessUsers}<br>
                 <b>Secure Access Average Bandwidth Per User:</b> ${secureAccessSigAverageBandwidth} GB/day<br>
-                <b>Secure Access Utilization:</b> ${secureAccessSigUtilization}%<br></br>
-                ${secureAccessAdditionalSigUsers ? `<b>Additional Secure Access Users Required:</b> ${secureAccessAdditionalSigUsers}<br></br>` : ""}
-                <b>Total Secure Access Data Limit:</b> ${secureAccessTotalDataLimit} GB/month<br></br>
+                <b>Secure Access Utilization:</b> ${secureAccessSigUtilization}%<br>
+                ${secureAccessAdditionalSigUsers ? `<b>Additional Secure Access Users Required:</b> ${secureAccessAdditionalSigUsers}<br>` : ""}
+                <b>Total Secure Access Data Limit:</b> ${secureAccessTotalDataLimit} GB/month<br>
                 <b>Secure Access vs. Bandwidth:</b> ${secureAccessVsSigUtilization}%<br>
-                ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${secureAccessAllowedSeats}<br></br>` : ""}
-                <b>User Band:</b> ${userBand}${userBandWarning}<br></br>
+                ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${secureAccessAllowedSeats}<br>` : ""}
+                <b>User Band:</b> ${userBand}${userBandWarning}<br>
                 ${secureAccessSigLowUtilizationSeats ? `<div class="highlighted-box"><b>Total Secure Access Seat Count Required Based on Low Utilization:</b> ${secureAccessSigLowUtilizationSeats}</div><br>` : ""}
                 ${!secureAccessSigLowUtilizationSeats ? `<div class="highlighted-box"><b>Total Secure Access Seat Count Required:</b> ${totalSecureAccessUsers + Number(secureAccessAdditionalSigUsers)}</div><br>` : ""}
             `;
