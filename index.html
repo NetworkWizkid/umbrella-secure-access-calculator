@@ -31,11 +31,19 @@
         <label>Full-time Employees:</label>
         <input type="number" id="employees" placeholder="Enter number">
 
-        <label>K-12 Students:</label>
-        <input type="number" id="k12_students" placeholder="Enter number">
+        <label>Add Students?</label>
+        <select id="add_students" onchange="toggleStudentFields()">
+            <option value="No">No</option>
+            <option value="Yes">Yes</option>
+        </select>
 
-        <label>Higher Education Students:</label>
-        <input type="number" id="higher_ed_students" placeholder="Enter number">
+        <div id="student_fields" style="display: none;">
+            <label>K-12 Students:</label>
+            <input type="number" id="k12_students" placeholder="Enter number">
+
+            <label>Higher Education Students:</label>
+            <input type="number" id="higher_ed_students" placeholder="Enter number">
+        </div>
 
         <label>Average DNS Queries Per Day, Per User:</label>
         <input type="number" id="dns_queries" placeholder="Default: 5000">
@@ -56,7 +64,6 @@
             <p id="output"></p>
         </div>
     </div>
-
 
     <script src="ucjs.js"></script>
 </body>
