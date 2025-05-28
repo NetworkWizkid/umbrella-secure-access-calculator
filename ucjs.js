@@ -597,3 +597,39 @@ function exportResultsToPDF() {
         }
     }
 }
+
+// README Modal Functionality
+document.getElementById("view-guide-button").addEventListener("click", () => {
+    const modal = document.getElementById("readme-modal");
+    const readmeContent = document.getElementById("readme-content");
+
+    // Show loading message
+    readmeContent.innerHTML = "<p>Loading guide...</p>";
+
+    // Fetch and render README from GitHub
+    fetch("https://raw.githubusercontent.com/NetworkWizkid/umbrella-secure-access-calculator/master/README.md")
+        .then(response => {
+            if (!response.ok) throw new Error(`Failed to load README: ${response.statusText}`);
+            return response.text();
+        })
+        .then(data => {
+            readmeContent.innerHTML = marked.parse(data);
+            modal.style.display = "flex";
+        })
+        .catch(error => {
+            console.error("Error loading README:", error);
+            readmeContent.innerHTML = "<p>Unable to load the guide. Please check your internet connection or try again later.</p>";
+            modal.style.display = "flex";
+        });
+});
+
+// Close modal on close button click or overlay click
+document.getElementById("close-modal").addEventListener("click", () => {
+    document.getElementById("readme-modal").style.display = "none";
+});
+
+document.getElementById("readme-modal").addEventListener("click", (event) => {
+    if (event.target === document.getElementById("readme-modal")) {
+        document.getElementById("readme-modal").style.display = "none";
+    }
+});

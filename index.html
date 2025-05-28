@@ -8,7 +8,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cisco Umbrella & Secure Access Seat Calculator</h1>
+        <div class="header-controls">
+            <h1>Cisco Umbrella & Secure Access Seat Calculator</h1>
+            <button id="view-guide-button" class="guide-button">View Guide</button>
+        </div>
+        <!-- Modal for README -->
+        <div id="readme-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span id="close-modal" class="close-button">×</span>
+                <div id="readme-content" class="readme-content"></div>
+            </div>
+        </div>
         <div class="section">
             <label for="ea">Is there or will there be an Enterprise Agreement?</label>
             <select id="ea">
@@ -107,6 +117,7 @@
         <div id="umbrella_output" class="output-section" style="display: none;"></div>
         <div id="secure_access_output" class="output-section secure-access-section" style="display: none;"></div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="ucjs.js"></script>
