@@ -2,51 +2,78 @@
     font-family: Arial, sans-serif;
     background-color: #f4f4f9;
     color: #333;
-    text-align: center;
     margin: 0;
-    padding: 20px;
+    padding: 30px;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: auto;
     background: #ffffff;
-    padding: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 h1 {
+    font-size: 28px;
     color: #0056b3;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 22px;
+    color: #0056b3;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-size: 18px;
+    color: #444;
+    margin: 20px 0 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
 }
 
 label {
     font-weight: bold;
     display: block;
-    margin-top: 10px;
+    margin-top: 15px;
+    color: #444;
 }
 
 input, select {
     width: 100%;
-    height: 40px;
+    height: 45px;
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
+
+    input:focus, select:focus {
+        border-color: #0056b3;
+        box-shadow: 0 0 5px rgba(0, 86, 179, 0.2);
+        outline: none;
+    }
 
 button {
     background: #0056b3;
     color: white;
-    padding: 10px;
-    margin-top: 15px;
+    padding: 15px;
+    margin-top: 25px;
     border: none;
     cursor: pointer;
     width: 100%;
     font-size: 16px;
-    border-radius: 5px;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s;
 }
 
     button:hover {
@@ -54,20 +81,22 @@ button {
     }
 
 .output {
-    margin-top: 20px;
-    background: #eef;
-    padding: 15px;
-    border-radius: 5px;
+    margin-top: 30px;
+    background: #f8faff;
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
 }
+
 .notes {
     background-color: #f4f4f9;
-    border: 2px solid #0056b3;
+    border: 1px solid #0056b3;
     padding: 15px;
-    border-radius: 8px;
     margin-bottom: 20px;
-    font-size: 16px;
+    border-radius: 5px;
+    font-size: 14px;
     text-align: center;
-    font-weight: bold;
 }
 
     .notes a {
@@ -79,7 +108,17 @@ button {
         .notes a:hover {
             text-decoration: underline;
         }
-    .hidden {
-    display: none;
-    }
-    
+
+#secure_access_fields {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #ddd;
+}
+
+.section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 6px;
+    border: 1px solid #eee;
+}

@@ -3,65 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cisco Umbrella Seat Calculator</title>
+    <title>Cisco Umbrella & Secure Access Seat Calculator</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Cisco Umbrella Seat Calculator</h1>
+        <h1>Cisco Umbrella & Secure Access Seat Calculator</h1>
 
         <div class="notes">
-            <p>
-                To understand how Cisco Umbrella licensing works and how to make the most of this tool,
-                <a href="https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/" target="_blank">click here</a>.
-            </p>
+            <p><b>
+    To understand how Cisco Umbrella licensing works and how to make the most of this tool,
+    <a href="https://networkwizkid.com/2024/03/07/how-to-determine-the-number-of-cisco-umbrella-seats-required/" target="_blank">click here</a>.
+</b></p>
         </div>
 
-        <label>Subscription Tier:</label>
-        <select id="subscription" onchange="updateSubscription()">
-            <option value="select">Select a Subscription Tier</option>
-            <option value="dns_essentials">DNS Essentials</option>
-            <option value="dns_advantage">DNS Advantage</option>
-            <option value="sig_essentials">SIG Essentials</option>
-            <option value="sig_advantage">SIG Advantage</option>
-            <option value="dns_edu">DNS for EDU</option>
-            <option value="sig_edu">SIG for EDU</option>
-        </select>
+        <div class="section">
+            <h3>Umbrella Configuration</h3>
+            <label>Subscription Tier:</label>
+            <select id="subscription" onchange="updateSubscription()">
+                <option value="select">Select a Subscription Tier</option>
+                <option value="dns_essentials">DNS Essentials</option>
+                <option value="dns_advantage">DNS Advantage</option>
+                <option value="sig_essentials">SIG Essentials</option>
+                <option value="sig_advantage">SIG Advantage</option>
+                <option value="dns_edu">DNS for EDU</option>
+                <option value="sig_edu">SIG for EDU</option>
+            </select>
 
-        <label>Full-time Employees:</label>
-        <input type="number" id="employees" placeholder="Enter number">
+            <label>Full-time Employees:</label>
+            <input type="number" id="employees" placeholder="Enter number">
 
-        <label>Add Students?</label>
-        <select id="add_students" onchange="toggleStudentFields()">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </select>
+            <label>Add Students?</label>
+            <select id="add_students" onchange="toggleStudentFields()">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
 
-        <div id="student_fields" style="display: none;">
-            <label>K-12 Students:</label>
-            <input type="number" id="k12_students" placeholder="Enter number">
+            <div id="student_fields" style="display: none;">
+                <label>K-12 Students:</label>
+                <input type="number" id="k12_students" placeholder="Enter number">
 
-            <label>Higher Education Students:</label>
-            <input type="number" id="higher_ed_students" placeholder="Enter number">
+                <label>Higher Education Students:</label>
+                <input type="number" id="higher_ed_students" placeholder="Enter number">
+            </div>
+
+            <label>Average DNS Queries Per Day, Per User:</label>
+            <input type="number" id="dns_queries" placeholder="Default: 5000">
+
+            <label>EA Subscription:</label>
+            <select id="ea">
+                <option value="No">No</option>
+                <option value="Yes">Yes</option>
+            </select>
+
+            <label>SIG Peak Bandwidth Per User, Per Month (in kbps):</label>
+            <input type="number" id="sig_peak_bandwidth" placeholder="Default: 1500 kbps">
         </div>
 
-        <label>Average DNS Queries Per Day, Per User:</label>
-        <input type="number" id="dns_queries" placeholder="Default: 5000">
+        <div class="section">
+            <h3>Secure Access Comparison</h3>
+            <label>Compare with Cisco Secure Access?</label>
+            <select id="compare_secure_access" onchange="toggleSecureAccessFields()">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+            </select>
 
-        <label>EA Subscription:</label>
-        <select id="ea">
-            <option value="No">No</option>
-            <option value="Yes">Yes</option>
-        </select>
-
-        <label>SIG Peak Bandwidth Per User, Per Month (in kbps):</label>
-        <input type="number" id="sig_peak_bandwidth" placeholder="Default: 1500">
+            <div id="secure_access_fields" style="display: none;">
+                <div class="notes">
+                    <p><b>Note: Select a single DNS subscription or one SIA and one SPA subscription.</b></p>
+                </div>
+                <label>Secure Access Subscription Tier:</label>
+                <select id="secure_access_subscription_1" onchange="updateSecureAccessSubscriptions()">
+                    <option value="select">Select a Secure Access Subscription Tier</option>
+                    <option value="dns_defense_essentials">DNS Defense Essentials</option>
+                    <option value="dns_defense_advantage">DNS Defense Advantage</option>
+                    <option value="sia_essentials">Secure Internet Access (SIA) Essentials</option>
+                    <option value="sia_advantage">Secure Internet Access (SIA) Advantage</option>
+                    <option value="spa_essentials">Secure Private Access (SPA) Essentials</option>
+                    <option value="spa_advantage">Secure Private Access (SPA) Advantage</option>
+                </select>
+                <select id="secure_access_subscription_2" onchange="updateSecureAccessSubscriptions()">
+                    <option value="select">Select a Secure Access Subscription Tier</option>
+                    <option value="dns_defense_essentials">DNS Defense Essentials</option>
+                    <option value="dns_defense_advantage">DNS Defense Advantage</option>
+                    <option value="sia_essentials">Secure Internet Access (SIA) Essentials</option>
+                    <option value="sia_advantage">Secure Internet Access (SIA) Advantage</option>
+                    <option value="spa_essentials">Secure Private Access (SPA) Essentials</option>
+                    <option value="spa_advantage">Secure Private Access (SPA) Advantage</option>
+                </select>
+                <label>SPA User Seat Count:</label>
+                <input type="number" id="spa_seat_count" placeholder="Enter number" style="display: none;">
+                <label>SIA User Seat Count:</label>
+                <input type="number" id="sia_user_seat_count" placeholder="Enter number" style="display: none;">
+                <label>Secure Access Peak Bandwidth Per User, Per Month (in GB):</label>
+                <input type="number" id="secure_access_peak_bandwidth" placeholder="Default: 20GB">
+            </div>
+        </div>
 
         <button onclick="calculateSeats()">Calculate</button>
 
         <div class="output">
-            <h2>Results</h2>
-            <p id="output"></p>
+            <h2><u>Cisco Umbrella Results</u></h2>
+            <p id="umbrella_output"></p>
+            <h2><u>Cisco Secure Access Results</u></h2>
+            <p id="secure_access_output"></p>
         </div>
     </div>
 
