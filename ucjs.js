@@ -393,7 +393,7 @@ function updateSeats() {
                 <b>Secure Access Utilization:</b> ${secureAccessSigUtilization}%<br>
                 ${secureAccessAdditionalSigUsers ? `<b>Additional Secure Access Users Required:</b> ${secureAccessAdditionalSigUsers}<br>` : ""}
                 <b>Total Secure Access Data Limit:</b> ${secureAccessTotalDataLimit} GB/month<br>
-                <b>Secure Access vs. Bandwidth:</b> ${secureAccessVsSigUtilization}%<br>
+                <b>Secure Access vs. SIG Bandwidth:</b> ${secureAccessVsSigUtilization}%<br>
                 ${ea === "Yes" ? `<b>EA Allowed Seats:</b> ${secureAccessAllowedSeats}<br>` : ""}
                 <b>User Band:</b> ${userBand}${userBandWarning}<br>
                 ${secureAccessSigLowUtilizationSeats ? `<div class="highlighted-box"><b>Total Secure Access Seat Count Required Based on Low Utilization:</b> ${secureAccessSigLowUtilizationSeats}</div><br>` : ""}
