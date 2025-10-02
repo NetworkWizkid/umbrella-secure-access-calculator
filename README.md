@@ -1,4 +1,8 @@
-﻿# Cisco Umbrella & Secure Access Seat Calculator
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+END OF LIFE - NO LONGER UPDATED - 01/10/2025
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+ # Cisco Umbrella & Secure Access Seat Calculator
 
 ## 📌 Overview
 The **Cisco Umbrella & Secure Access Seat Calculator** is a powerful tool designed to help organizations determine the number of seats required for **Cisco Umbrella** and **Cisco Secure Access** deployments. It accounts for:
